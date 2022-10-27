@@ -3,9 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import api from "../../services/api";
-import { cpfValid, phoneValid } from "../../services/regex";
 import DInput from "../../components/DInput";
 import Logo from "../../assets/Logo.jpg";
 import DSelect from "../../components/DSelect";
