@@ -1,12 +1,13 @@
 import { Input } from "antd";
 import { Container } from "./style";
 
-const DInput = ({ label, placeholder, error = null }) => {
+const DInput = ({ placeholder, error = null, onChange }) => {
   return (
     <Container>
       <Input
         status={error && error}
         placeholder={error ? error : placeholder}
+        onChange={(e) => onChange(e.target.value)}
       />
     </Container>
   );

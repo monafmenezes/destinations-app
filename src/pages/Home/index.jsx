@@ -1,17 +1,36 @@
 import { Container, ContainerForm, Content, Main } from "./style";
-import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
 import DInput from "../../components/DInput";
 import Logo from "../../assets/Logo.jpg";
 import DSelect from "../../components/DSelect";
 import DButton from "../../components/Button";
 import { Form } from "antd";
 import { DestinationsContext } from "../../providers/destinations";
+import { UserContext } from "../../providers/user";
+import { DataContext } from "../../providers/data";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { countries, city } = useContext(DestinationsContext);
+  const { addToUser } = useContext(UserContext);
+  const { addToData } = useContext(DataContext);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [myCountries, setMyCountries] = useState([]);
+  const [myCities, setMyCities] = useState([]);
+
+  const navigate = useNavigate();
+
+  console.log(myCountries);
+
+  const handleSubmit = () => {
+    addToUser({ name, email, phone, cpf });
+    addToData({myCountries, myCities})
+    navigate("/destinations")
+  };
 
   return (
     <Container>
@@ -20,14 +39,18 @@ const Home = () => {
       <Main>
         <Content>
           <ContainerForm>
-            <Form layout="vertical">
+            <Form layout="vertical" submit={() => handleSubmit} >
               <Form.Item
                 label="Nome"
                 name="name"
                 rules={[{ required: true, message: "Campo obrigatório" }]}
                 style={{ width: "100%" }}
               >
-                <DInput label="Nome" placeholder="Digite seu nome" />
+                <DInput
+                  label="Nome"
+                  placeholder="Digite seu nome"
+                  onChanges={setName}
+                />
               </Form.Item>
               <Form.Item
                 label="Email"
@@ -42,6 +65,7 @@ const Home = () => {
                   label="Email"
                   type="email"
                   placeholder="Digite seu email"
+                  onChanges={setEmail}
                 />
               </Form.Item>
               <Form.Item
@@ -57,6 +81,7 @@ const Home = () => {
                   label="Telefone"
                   type="phone"
                   placeholder="Digite seu telefone"
+                  onChanges={setPhone}
                 />
               </Form.Item>
 
@@ -66,7 +91,11 @@ const Home = () => {
                 rules={[{ required: true, message: "Campo obrigatório" }]}
                 style={{ width: "100%" }}
               >
-                <DInput label="CPF" placeholder="Digite seu CPF" />
+                <DInput
+                  label="CPF"
+                  placeholder="Digite seu CPF"
+                  onChanges={setCpf}
+                />
               </Form.Item>
 
               <Form.Item
@@ -83,7 +112,8 @@ const Home = () => {
                 <DSelect
                   placeholder="Selecione o país"
                   options={countries}
-                  label="Países"
+                  onChanges={setMyCountries}
+                  data={myCountries}
                 />
               </Form.Item>
 
@@ -96,7 +126,8 @@ const Home = () => {
                 <DSelect
                   placeholder="Selecione a cidade"
                   options={city}
-                  label="Cidades"
+                  onChanges={setMyCities}
+                  data={myCities}
                 />
               </Form.Item>
 
