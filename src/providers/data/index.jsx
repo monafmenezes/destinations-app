@@ -6,12 +6,11 @@ export const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
 
   const addToData = ({ city, country }) => {
-    console.log(city, country)
     setData({ city, country });
   };
 
   return (
-    <DataContext.Provider value={(data, addToData)}>
+    <DataContext.Provider value={{data, addToData}}>
       {children}
     </DataContext.Provider>
   );
