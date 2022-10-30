@@ -7,7 +7,7 @@ export const Title = styled.div`
   height: 9vh;
 
   a {
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
     color: var(--black);
     font-size: 30px;
   }
@@ -15,7 +15,4 @@ export const Title = styled.div`
   svg {
     margin-left: 8px;
   }
-
-  
-
-`
+`;

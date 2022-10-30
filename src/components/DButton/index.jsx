@@ -6,7 +6,7 @@ const DButton = ({ name }) => {
       type="primary"
       block
       danger
-      style={{ marginTop: "5px", marginBottom: '10px' }}
+      style={{ marginTop: "5px", marginBottom: "10px" }}
       htmlType="submit"
     >
       {name}

@@ -11,6 +11,7 @@ import {
   BiUser,
   BiWorld,
 } from "react-icons/bi";
+import Default from "../../assets/default.png";
 
 const Card = ({ name, email, phone, cpf, cities, countries }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,12 +29,23 @@ const Card = ({ name, email, phone, cpf, cities, countries }) => {
       })
       .then((res) => {
         const index = Math.floor(Math.random() * 9);
-        console.log(res);
-        const data = {
-          alt: res.data.photos[index].alt,
-          url: res.data.photos[index].src.original,
-          id: res.data.photos[index].id,
-        };
+
+        let data = null;
+
+        if (res.data.photos[index]) {
+          data = {
+            alt: res.data.photos[index].alt,
+            url: res.data.photos[index].src.original,
+            title: res.data.photos[index].alt,
+          };
+        } else {
+          data = {
+            alt: "Poxa, não existe fotos para esse destino! 😔",
+            url: Default,
+            title: "Poxa, não existe fotos para esse destino! 😔",
+          };
+        }
+
         setPhoto(data);
         setIsModalOpen(true);
         setTitle(search);
@@ -65,7 +77,7 @@ const Card = ({ name, email, phone, cpf, cities, countries }) => {
             {countries.map((country, index) => (
               <li key={index}>
                 <Button
-                danger
+                  danger
                   onClick={() => {
                     handlePhotos(country);
                   }}
@@ -85,7 +97,7 @@ const Card = ({ name, email, phone, cpf, cities, countries }) => {
             {cities.map((city, index) => (
               <li key={index}>
                 <Button
-                danger
+                  danger
                   onClick={() => {
                     handlePhotos(city);
                   }}
