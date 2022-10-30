@@ -5,7 +5,7 @@ export const DestinationsContext = createContext([]);
 
 export const DestinationsProvider = ({ children }) => {
   const [countries, setCountries] = useState([]);
-  const [city, setCity] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const loadData = (type) => {
     api
@@ -14,7 +14,7 @@ export const DestinationsProvider = ({ children }) => {
         if (type === "country") {
           setCountries(response.data);
         } else {
-          setCity(response.data);
+          setCities(response.data);
         }
       })
       .catch((err) => console.log(err));
@@ -26,7 +26,7 @@ export const DestinationsProvider = ({ children }) => {
   }, []);
 
   return (
-    <DestinationsContext.Provider value={{ countries, city }}>
+    <DestinationsContext.Provider value={{ countries, cities }}>
       {children}
     </DestinationsContext.Provider>
   );

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -29,6 +28,11 @@ export const Main = styled.div`
       align-self: flex-start;
     }
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
 `;
 
 export const Content = styled.div`
@@ -45,7 +49,34 @@ export const Content = styled.div`
     border-radius: 50%;
     border: 2px solid var(--red);
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
+
 `;
+
+export const ContainerImage = styled.div `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  img {
+    width: 400px;
+    height: 400px;
+    max-width: 500px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+  }
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
+
+`
 
 export const ContainerForm = styled.div`
   width: 50%;
@@ -58,4 +89,12 @@ export const ContainerForm = styled.div`
   label {
     align-self: flex-start;
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
+  
 `;
+
+

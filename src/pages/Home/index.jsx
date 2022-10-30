@@ -1,91 +1,77 @@
-import { Container, ContainerForm, Content, Main } from "./style";
-import { useContext, useState } from "react";
+import { useContext } from "react";
+import { Form } from "antd";
+import { useNavigate } from "react-router-dom";
+import DSelect from "../../components/DSelect";
+import DButton from "../../components/DButton";
 import DInput from "../../components/DInput";
 import Logo from "../../assets/Logo.jpg";
-import DSelect from "../../components/DSelect";
-import DButton from "../../components/Button";
-import { Form, Input } from "antd";
 import { DestinationsContext } from "../../providers/destinations";
 import { UserContext } from "../../providers/user";
-import { DataContext } from "../../providers/data";
-import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../providers/search";
+import { Container, ContainerForm, ContainerImage, Content, Main } from "./style";
+
 
 const Home = () => {
-  const { countries, city } = useContext(DestinationsContext);
-  const { addToUser } = useContext(UserContext);
-  const { addToData } = useContext(DataContext);
-
+  const { countries, cities } = useContext(DestinationsContext);
+  const { setUser } = useContext(UserContext);
+  const { setSearchCities, setSearchCountries } =
+    useContext(SearchContext);
+ 
   const navigate = useNavigate();
 
-  const handleSubmit = ({ name, email, phone, cpf, country, city }) => {
-    
-    addToUser({ name, email, phone, cpf });
-    addToData({country, city})
-    navigate("/destinations")
+  const handleSubmit = async ({ name, email, phone, cpf, city, country }) => {
+    const user = { name, email, phone, cpf };
+    setUser(user);
+    setSearchCities(city);
+    setSearchCountries(country);
+    navigate("/destinations");
   };
 
   return (
     <Container>
-      <h1>Destinations</h1>
+      
 
       <Main>
         <Content>
           <ContainerForm>
-            <Form layout="vertical" onFinish={handleSubmit} >
-              <Form.Item
-                label="Nome"
-                name="name"
-                rules={[{ required: true, message: "Campo obrigatório" }]}
-                style={{ width: "100%" }}
-              >
-                <Input/>
-              </Form.Item>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Campo obrigatório" },
-                  { type: "email", message: "Email inválido" },
-                ]}
-                style={{ width: "100%" }}
-              >
-                <Input/>
-              </Form.Item>
-              <Form.Item
-                label="Phone"
-                name="phone"
-                rules={[
-                  { required: true, message: "Campo obrigatório" },
-                  { type: "phone", message: "Telefone inválido" },
-                ]}
-                style={{ width: "100%" }}
-              >
-                <Input/>
-              </Form.Item>
+            <Form
+              name="form"
+              layout="vertical"
+              initialValues={{ remember: true }}
+              onFinishFailed={(value) => console.log(value)}
+              onFinish={handleSubmit}
+              autoComplete="off"
+            >
+              <DInput name="Nome" value="name" />
+              <DInput name="Email" value="email" />
 
-              <Form.Item
-                label="CPF"
-                name="cpf"
-                rules={[{ required: true, message: "Campo obrigatório" }]}
-                style={{ width: "100%" }}
-              >
-                <Input/>
-              </Form.Item>
+              <DInput name="Telefone" value="phone" />
 
-              <DSelect label="Países"  name="country"  placeholder="Selecione o país" options={countries} />
-              
-              <DSelect label="Cidades"  name="city"  placeholder="Selecione a cidade" options={city} />
-              
+              <DInput name="CPF" value="cpf" />
 
+              <DSelect
+                label="Países"
+                name="country"
+                placeholder="Selecione o país"
+                options={countries}
+              />
+
+              <DSelect
+                label="Cidades"
+                name="city"
+                placeholder="Selecione a cidade"
+                options={cities}
+              />
               <DButton name="Enviar" />
             </Form>
           </ContainerForm>
         </Content>
 
-        <Content>
+        <ContainerImage>
           <img src={Logo} alt="Mapa - destinos" />
-        </Content>
+        </ContainerImage>
       </Main>
+      
     </Container>
   );
 };

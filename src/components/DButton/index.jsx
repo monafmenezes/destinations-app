@@ -1,12 +1,12 @@
 import { Button } from "antd";
 
-const DButton = ({ name, onClick }) => {
+const DButton = ({ name }) => {
   return (
     <Button
       type="primary"
       block
       danger
-      style={{ marginTop: "10px" }}
+      style={{ marginTop: "5px", marginBottom: '10px' }}
       htmlType="submit"
     >
       {name}
