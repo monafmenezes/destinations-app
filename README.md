@@ -20,13 +20,10 @@ Vercel: [https://destinations-app-eta.vercel.app/](https://destinations-app-eta.
 ![Captura de tela de 2022-10-30 09-28-30](https://user-images.githubusercontent.com/85262397/198882440-43441e22-2808-49b9-aab8-0be37b98f840.png)
 
 #### 🌎 Página Destinations 
-
-![Captura de tela de 2022-10-30 09-28-55](https://user-images.githubusercontent.com/85262397/198882483-cfdf9b72-86b1-455f-a708-e8bfcf8bbd69.png)
 ![Captura de tela de 2022-10-30 09-29-08](https://user-images.githubusercontent.com/85262397/198882487-629223d8-87e3-47bb-9022-d8a1af2ebb17.png)
 ![Captura de tela de 2022-10-30 09-29-16](https://user-images.githubusercontent.com/85262397/198882492-88d703f0-ff16-456e-82ab-58caacde4fe9.png)
 
 ### 📱 Mobile 
-![Captura de tela de 2022-10-30 09-30-06](https://user-images.githubusercontent.com/85262397/198882576-bb43ceb8-34d6-4c75-aa9c-e851fec6de9f.png)
 ![Captura de tela de 2022-10-30 09-31-28](https://user-images.githubusercontent.com/85262397/198882586-de9a846a-4e90-4cf9-befb-a91ac9f946c8.png)
 ![Captura de tela de 2022-10-30 09-31-33](https://user-images.githubusercontent.com/85262397/198882587-b0348537-df9d-4fa2-9335-c587909bf4c1.png)
 
