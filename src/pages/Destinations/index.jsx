@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { SearchContext } from "../../providers/search";
 import { UserContext } from "../../providers/user";
 import Card from "../../components/Card";
-
-import pexels from "../../services/pexels";
 import { Container } from "./style";
 
 const Destinations = () => {

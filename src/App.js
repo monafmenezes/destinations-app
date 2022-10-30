@@ -15,10 +15,10 @@ function App() {
         <SearchProvider>
           <UserProvider>
             <PhotoProvider>
-              <Header/>
+              <Header />
               <GlobalStyle />
               <RoutesPages />
-              <Footer/>
+              <Footer />
             </PhotoProvider>
           </UserProvider>
         </SearchProvider>
