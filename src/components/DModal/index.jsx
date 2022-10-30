@@ -1,9 +1,11 @@
-import { Button, Image, Modal } from "antd";
+import { Image, Modal } from "antd";
 import { useContext } from "react";
 import { PhotoContext } from "../../providers/photo";
+import { Text } from "./style";
 
 const DModal = ({ title, open, setOpen }) => {
   const { photo } = useContext(PhotoContext);
+
   return (
     <Modal
       open={open}
@@ -12,13 +14,15 @@ const DModal = ({ title, open, setOpen }) => {
       title={title}
       centered
     >
-      <Image
-        width={200}
-        src={photo.url}
-        alt={photo.alt}
-        style={{ marginBottom: "5px" }}
-      />
-      <p>{photo.alt}</p>
+      <>
+        <Image
+          width={200}
+          src={photo.url}
+          alt={photo.alt}
+          style={{ marginBottom: "5px" }}
+        />
+        <Text>{photo.title}</Text>
+      </>
     </Modal>
   );
 };

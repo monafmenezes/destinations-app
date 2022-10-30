@@ -8,15 +8,19 @@ import Logo from "../../assets/Logo.jpg";
 import { DestinationsContext } from "../../providers/destinations";
 import { UserContext } from "../../providers/user";
 import { SearchContext } from "../../providers/search";
-import { Container, ContainerForm, ContainerImage, Content, Main } from "./style";
-
+import {
+  Container,
+  ContainerForm,
+  ContainerImage,
+  Content,
+  Main,
+} from "./style";
 
 const Home = () => {
   const { countries, cities } = useContext(DestinationsContext);
   const { setUser } = useContext(UserContext);
-  const { setSearchCities, setSearchCountries } =
-    useContext(SearchContext);
- 
+  const { setSearchCities, setSearchCountries } = useContext(SearchContext);
+
   const navigate = useNavigate();
 
   const handleSubmit = async ({ name, email, phone, cpf, city, country }) => {
@@ -29,26 +33,27 @@ const Home = () => {
 
   return (
     <Container>
-      
-
       <Main>
         <Content>
           <ContainerForm>
             <Form
               name="form"
               layout="vertical"
+              size="small"
               initialValues={{ remember: true }}
               onFinishFailed={(value) => console.log(value)}
               onFinish={handleSubmit}
               autoComplete="off"
             >
+              <h5>Dados pessoais</h5>
               <DInput name="Nome" value="name" />
-              <DInput name="Email" value="email" />
+              <DInput name="Email" value="email" validated="email" message="Digite um email válido" />
 
-              <DInput name="Telefone" value="phone" />
+              <DInput name="Telefone" value="phone" max={11}/>
 
-              <DInput name="CPF" value="cpf" />
+              <DInput name="CPF" value="cpf" max={11} />
 
+              <h5>Destinos de interesse </h5>
               <DSelect
                 label="Países"
                 name="country"
@@ -62,6 +67,7 @@ const Home = () => {
                 placeholder="Selecione a cidade"
                 options={cities}
               />
+
               <DButton name="Enviar" />
             </Form>
           </ContainerForm>
@@ -71,7 +77,6 @@ const Home = () => {
           <img src={Logo} alt="Mapa - destinos" />
         </ContainerImage>
       </Main>
-      
     </Container>
   );
 };
